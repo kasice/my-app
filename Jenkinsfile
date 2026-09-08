@@ -25,7 +25,7 @@ pipeline {
 
         stage('Login to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'kasice_dockerHub',
+                withCredentials([usernamePassword(credentialsId: 'docker-hub_cred',
                                                   usernameVariable: 'DOCKERHUB_USER',
                                                   passwordVariable: 'DOCKERHUB_PASS')]) {
                     sh """
