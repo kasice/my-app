@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "docker.io/docker push kasice/my-app:latest"
+        IMAGE_NAME = "docker.io/kasice/my-app:latest"
     }
 
     stages {
