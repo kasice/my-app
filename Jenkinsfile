@@ -13,17 +13,7 @@ pipeline {
                 echo "Repository checked out from GitHub"
             }
         }
-
-        stage('Build Docker Image') {
-            steps {
-                sh """
-                    echo "Building Docker image: $IMAGE_NAME"
-                    docker build -t $IMAGE_NAME .
-                """
-            }
-        }
-
-        stage('Login to Docker Hub') {
+stage('Login to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub_cred',
                                                   usernameVariable: 'DOCKERHUB_USER',
@@ -34,7 +24,14 @@ pipeline {
                 }
             }
         }
-
+        stage('Build Docker Image') {
+            steps {
+                sh """
+                    echo "Building Docker image: $IMAGE_NAME"
+                    docker build -t $IMAGE_NAME .
+                """
+            }
+        }
         stage('Push Image') {
             steps {
                 sh """
